@@ -32,8 +32,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button UploadBn,ChooseBn;
-    private EditText Name;
-    private EditText server;
+    private EditText Name, server;
+    private TextView response;
     private ImageView imgView;
     private final int IMG_REQUEST = 1;
     private Bitmap bitmap;
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ChooseBn=(Button) findViewById(R.id.chooseBn);
         Name= (EditText) findViewById(R.id.name);
         imgView=(ImageView) findViewById(R.id.imageView);
+        response = (TextView) findViewById(R.id.response);
         server=(EditText) findViewById(R.id.server);
         server.setText(UploadUrl);
         UploadBn.setOnClickListener(this);
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 selectImage();
                 break;
             case R.id.uploadBn:
-                if (server.getText().toString()!="")
+                if (!server.getText().toString().isEmpty())
                     UploadUrl=server.getText().toString();
                 uploadImage();
                 break;
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             JSONObject jsonObject=new JSONObject(response);
                             String Response = jsonObject.getString("response");
                             Toast.makeText(MainActivity.this,Response,Toast.LENGTH_LONG).show();
+                            response.setText(Response);
+                            response.setVisibility(View.VISIBLE);
                             imgView.setImageResource(0);
                             imgView.setVisibility(View.GONE);
                             Name.setText("");
