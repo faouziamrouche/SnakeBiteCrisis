@@ -33,6 +33,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="14dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:id="@+id/response"
+        android:visibility="gone"
+        android:layout_marginTop="25dp"
+        />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
